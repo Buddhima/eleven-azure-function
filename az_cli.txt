@@ -1,0 +1,38 @@
+az storage blob list \
+  --container-name input-workitems \
+  --output table \
+  --account-name seven11azurefncstore \
+  --account-key 51j9tFphrxWb8onhXj8ho9/PkdWbZ1vta2r6M0fZowl9WFC6qW8HZUCHhWiFewYQWlyLmHfIfPXosmucRzAiLw==
+
+
+az storage blob copy start-batch \
+  --destination-container output \
+  --account-name seven11azurefncstore \
+  --account-key 51j9tFphrxWb8onhXj8ho9/PkdWbZ1vta2r6M0fZowl9WFC6qW8HZUCHhWiFewYQWlyLmHfIfPXosmucRzAiLw== \
+  --source-account-name seven11azurefncstore \
+  --source-account-key 51j9tFphrxWb8onhXj8ho9/PkdWbZ1vta2r6M0fZowl9WFC6qW8HZUCHhWiFewYQWlyLmHfIfPXosmucRzAiLw== \
+  --source-container input-workitems
+
+
+az storage blob list \
+  --container-name output \
+  --output table \
+  --account-name seven11azurefncstore \
+  --account-key 51j9tFphrxWb8onhXj8ho9/PkdWbZ1vta2r6M0fZowl9WFC6qW8HZUCHhWiFewYQWlyLmHfIfPXosmucRzAiLw==
+
+
+az storage blob upload-batch -d output -s /home/buddhima/Downloads/input-xmls/set3 --account-name seven11azurefncstore --account-key 51j9tFphrxWb8onhXj8ho9/PkdWbZ1vta2r6M0fZowl9WFC6qW8HZUCHhWiFewYQWlyLmHfIfPXosmucRzAiLw==
+
+
+az storage blob delete-batch \
+  --source input-workitems \
+  --account-name seven11azurefncstore \
+  --account-key 51j9tFphrxWb8onhXj8ho9/PkdWbZ1vta2r6M0fZowl9WFC6qW8HZUCHhWiFewYQWlyLmHfIfPXosmucRzAiLw==
+
+az storage blob copy start-batch \
+  --destination-container input-workitems \
+  --account-name seven11azurefncstore \
+  --account-key 51j9tFphrxWb8onhXj8ho9/PkdWbZ1vta2r6M0fZowl9WFC6qW8HZUCHhWiFewYQWlyLmHfIfPXosmucRzAiLw== \
+  --source-account-name seven11azurefncstore \
+  --source-account-key 51j9tFphrxWb8onhXj8ho9/PkdWbZ1vta2r6M0fZowl9WFC6qW8HZUCHhWiFewYQWlyLmHfIfPXosmucRzAiLw== \
+  --source-container output
